@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-4 card" style="border: none; height: 250px; background-color: transparent;">
+            <div class="card-body p-5" style="border-radius: 30px; background-color: white;">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <h2 class="text-center">Input saldomu sekarang</h2>
+
+                    <div class="mt-5 d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="current_saldo">Saldo Anda</label>
+                                <input type="number" class="form-control" name="current_saldo">
+                                <small class="form-text text-muted">
+                                    Contoh: 100000 (Seratus ribu rupiah)
+                                </small>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <input type="submit" class="btn btn-primary btn-landing" name="Current Saldo">
+                                <!-- <button type="submit" class="btn btn-primary" name="addSaldo">Submit</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

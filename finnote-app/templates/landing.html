@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand font-weight-bold brand-title" href="/">Finnote.</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">Tentang</a>
+            </li>
+            </ul>
+            <span class="navbar-text">
+                <span><a class="btn btn-primary btn-landing" href="{% url 'login' %}" style="color: white;">Masuk</a></span>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="mt-5 mt-md-0 col-11 col-md-6">
+                <h1 style="color: #5A9BA4; font-weight: bolder;">Atur keuanganmu!</h1>
+                <p>Pernah merasa bingung kemana semua uangmu habis? Tinggal lihat di <strong>Finnote</strong> aja!</p>
+                <a class="btn btn-primary btn-landing-start" href="{% url 'register' %}">Mulai</a>
+            </div>
+            <div class="mt-3 mt-md-0 col-12 col-md-6 text-center">
+                <img src="{% static 'images/ilustrasi.svg' %}" alt="ilustrasi" style="width: 90%;">
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 pt-3 container">
+        <h2 class="mb-5 text-center" id="about" style="color: #5A9BA4; font-weight: bolder;">Apa itu <strong>Finnote</strong>?</h2>
+        <div class="d-flex justify-content-center">
+            <div class="col-10 text-justify">
+                <p>Finnote adalah suatu tool yang bertujuan untuk mencatat semua pemasukan dan pengeluaran Anda. Kamu juga bisa memasukan biaya tanggungan yang harus kamu bayar, lalu Finnote akan otomatis mengkalkulasikan biaya tanggunganmu terhadap saldo yang kamu miliki, dan menampilkannya ke dalam suatu visual data sehingga memudahkan kamu untuk melihat keadaan keuanganmu!</p>
+                <p>Finnote juga dibekali oleh fitur Safeside, dimana Safeside dapat diartikan sebagai <i>'uang jaga - jaga'</i> untukmu, yang direpresentasikan ke dalam visual data. Hal tersebut dapat membantu kamu untuk menabung lho!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 pt-4 container">
+        <h2 class="mb-5 text-center" style="color: #5A9BA4; font-weight: bolder;">Bagaimana cara kerjanya?</h2>
+        <div class="row d-flex justify-content-center">
+            <div class="col-10 col-md-3 text-center">
+                <img src="{% static 'images/buy.svg' %}" alt="ilustrasi" style="width: 70%;">
+                <p class="mt-2">Transaksi</p>
+            </div>
+            <div class="col-10 col-md-3 text-center">
+                <img src="{% static 'images/laptop.svg' %}" alt="ilustrasi" style="width: 70%;">
+                <p class="mt-2">Catat di <strong>Finnote</strong></p>
+            </div>
+            <div class="col-10 col-md-3 text-center">
+                <img src="{% static 'images/happy.svg' %}" alt="ilustrasi" style="width: 70%;">
+                <p class="mt-2">Enjoy!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer bg-light" style="background-color: #E0F2F1;">
+        <div class="container mt-5 p-3 text-center">
+            <p class="m-3" style="color: #5A9BA4;">
+              &copy; <script>document.write(new Date().getFullYear());</script>, Finnote.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

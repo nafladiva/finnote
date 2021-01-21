@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-4 card" style="border: none; height: 250px; background-color: transparent;">
+            <div class="card-body p-5" style="border-radius: 30px; background-color: white;">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <h2 class="text-center">Edit detail tanggunganmu</h2>
+
+                    <div class="mt-5 d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="nama">Nama tanggungan</label>
+                                <input type="text" class="form-control" name="nama" value="{{ form.instance.nama }}">
+
+                                <label class="mt-4" for="jumlah">Jumlah</label>
+                                <input type="number" class="form-control" name="jumlah" value="{{ form.instance.jumlah }}">
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <input type="submit" class="btn btn-primary" value="Simpan" name="updateTanggungan">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

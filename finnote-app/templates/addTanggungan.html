@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-4 card" style="border: none; background-color: transparent;">
+            <div class="card-body p-4" style="border-radius: 30px; background-color: white;">
+                <h2 class="mt-3 text-center">Tambah tanggungan yang harus kamu bayar</h2>
+                <form method="POST" action="">
+                    {% csrf_token %}
+
+                    <div class="mt-5 d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="mt-3" for="nama">Nama tanggungan</label>
+                                <input type="text" class="form-control" name="nama">
+
+                                <label class="mt-3" for="jumlah">Jumlah</label>
+                                <input type="number" class="form-control" name="jumlah">
+                                <small class="form-text text-muted">
+                                    Contoh: 100000 (Seratus ribu rupiah)
+                                </small>
+                            </div>
+                            <div class="pt-3 d-flex justify-content-center">
+                                <input type="submit" class="btn btn-primary btn-landing" name="addTanggungan">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h3 class="mt-3 mb-3" style="color: #5A9BA4;">Transaksi</h3>
+        <div class="card" style="border: none; height: 450px; background-color: transparent;">
+            <div class="card-body" style="border-radius: 30px; background-color: white;">
+                <div class="row d-flex justify-content-between mb-4 pl-3 pr-3">
+                    <div style="width: 80%;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="pagination">
+                                    <span class="page-item step-links">
+                                        {% if page_obj.has_previous %}
+                                            <a class="btn btn-secondary" href="?page={{ page_obj.previous_page_number }}" style="background-color: #5A9BA4; border: none;">&laquo</a>
+                                        {% else %}
+                                            <a class="btn btn-secondary disabled" role="button" aria-disabled="true" style="background-color: #5A9BA4; border: none;">&laquo</a>
+                                        {% endif %}
+                                
+                                        <span class="ml-1 mr-1 current">
+                                            Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}
+                                        </span>
+                                
+                                        {% if page_obj.has_next %}
+                                            <a class="btn btn-secondary" href="?page={{ page_obj.next_page_number }}" style="background-color: #5A9BA4; border: none;">&raquo</a>
+                                        {% else %}
+                                        <a class="btn btn-secondary disabled" role="button" aria-disabled="true" style="background-color: #5A9BA4; border: none;">&raquo</a>
+                                        {% endif %}
+                                    </span>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-add-transaksi" href="{% url 'addTanggungan' request.user.id %}">+</a>
+                    </div>
+                </div>
+
+                <div class="table-wrapper-biaya">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for tanggungan in tanggungans %}
+                                <tr>
+                                    <td>{{tanggungan.nama}}</td>
+                                    <td>{{tanggungan.jumlah}}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{% url 'updateTanggungan' tanggungan.id %}">Edit</a>
+                                        <a class="mt-1 mt-md-0 btn btn-danger" href="{% url 'deleteTanggungan' tanggungan.id %}">Hapus</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.brand-title {
+    font-family: 'Fredoka One', cursive;
+    color: #5A9BA4 !important;
+}
+
+.table-wrapper {
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+    display:inline-block;
+}
+
+.table-wrapper-biaya {
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    display:inline-block;
+}
+
+.table-wrapper-transaksi {
+    width: 100%;
+    max-height: 400px;
+    overflow: auto;
+    display:inline-block;
+}
+
+.chart-wrapper {
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    display:inline-block;
+}
+.currSign:before { 
+    content: 'Rp. '; 
+}
+
+.btn-add {
+    width: 40px;
+    height: 40px;
+    background-color: #5A9BA4;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 3px 7px #5A9BA486;
+}
+
+.btn-add:hover {
+    transform: scale(1.2);
+    color: white;
+}
+
+.btn-add-transaksi {
+    width: 47px;
+    height: 47px;
+    background-color: #5A9BA4;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 3px 7px #5A9BA486;
+}
+
+.btn-add-transaksi:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+.btn-landing {
+    background-color: #0d7e8d;
+    color: white;
+    text-align: center;
+    border: none;
+    box-shadow: 0 3px 7px #5A9BA486;
+}
+
+.btn-landing-start {
+    width: 100px;
+    background-color: #0d7e8d;
+    color: white;
+    text-align: center;
+    border: none;
+    box-shadow: 0 3px 7px #5A9BA486;
+}

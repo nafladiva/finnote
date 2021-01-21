@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body style="background-color: #F5F5F5;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand font-weight-bold brand-title" href="">Finnote.</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'transaksi' %}">Transaksi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'tanggungan' %}">Tanggungan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profil' %}">Profil</a>
+            </li>
+            </ul>
+            <span class="navbar-text">
+                <span>Hello, {{ request.user }}</span>
+                <span><a class="ml-3 btn btn-secondary" href="{% url 'logout' %}" style="color: white;">Keluar</a></span>
+            </span>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+    
+    <footer class="footer bg-light" style="background-color: #E0F2F1;">
+        <div class="container mt-5 p-3 text-center">
+            <p class="m-3" style="color: #5A9BA4;">
+              &copy; <script>document.write(new Date().getFullYear());</script>, Finnote.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        let x = document.getElementById('currentSaldo'); 
+        let num = Number(x.innerHTML).toLocaleString('id');
+        x.innerHTML = num; 
+        x.classList.add("currSign"); 
+    </script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>
