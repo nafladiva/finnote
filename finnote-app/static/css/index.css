@@ -7,9 +7,36 @@ body {
     color: #5A9BA4 !important;
 }
 
+.saldo-card {
+    border-radius: 30px; 
+    background-image: url('/static/images/saldo-bg.png'), linear-gradient(135deg, rgb(128, 195, 234) 24%, rgba(128,222,234,1) 100%);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    padding: 20px; 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.047);
+}
+
+.info-card {
+    border-radius: 30px; 
+    background-color: white; 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.047);
+}
+
+.auth-card {
+    border-radius: 30px;
+    background-color: white; 
+    padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.047);
+}
+
+.input-box {
+    background-color: #F5F5F5;
+    border: none;
+}
+
 .table-wrapper {
     width: 100%;
-    max-height: 150px;
+    height: 150px;
     overflow: auto;
     display:inline-block;
 }
@@ -41,7 +68,7 @@ body {
 .btn-add {
     width: 40px;
     height: 40px;
-    background-color: #5A9BA4;
+    background-color: rgb(45, 97, 135);
     color: white;
     text-align: center;
     font-weight: bold;

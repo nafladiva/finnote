@@ -17,7 +17,7 @@
     <div class="mt-4 container">
         <div class="d-flex justify-content-center align-items-center">
             <div class="card" style="border: none; background-color: transparent;">
-                <div class="card-body d-flex justify-content-center" style="border-radius: 30px; background-color: #E0F2F1; padding: 20px;">
+                <div class="card-body d-flex justify-content-center auth-card">
                     <div class="container">
                         <h3 class="mb-4 font-weight-bold text-center" style="color: #5A9BA4;">Selamat Datang!</h3>
                         
@@ -29,11 +29,11 @@
                             {% csrf_token %}
                             <div class="form-group">
                               <label for="username">Username</label>
-                              <input type="text" class="form-control" name="username" id="username">
+                              <input type="text" class="form-control input-box" name="username" id="username">
                             </div>
                             <div class="form-group">
                               <label for="password">Password</label>
-                              <input type="password" class="form-control" name="password" id="password">
+                              <input type="password" class="form-control input-box" name="password" id="password">
                             </div>
                             <div class="pt-2 d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary" name="loginUser" style="background-color: #5A9BA4; border: none;">Masuk</button>
@@ -47,5 +47,13 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer bg-light" style="background-color: #E0F2F1;">
+        <div class="container mt-5 p-3 text-center">
+            <p class="m-3" style="color: #5A9BA4;">
+              &copy; <script>document.write(new Date().getFullYear());</script>, Finnote.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,14 +3,14 @@
 {% block content %}
     {% if current_saldo is not None %}
     <div class="container" id="hasCurrentSaldo">
-        <h3 class="mt-3 mb-3" style="color: #5A9BA4;">Dashboard</h3>
+        <h4 class="mt-3 mb-3" style="color: #5A9BA4;">Dashboard</h4>
         {% for message in messages %}
             <p class="alert alert-danger">{{message}}</p>
         {% endfor %}
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="card" style="border: none; height: 250px; background-color: transparent;">
-                    <div class="card-body d-flex justify-content-center align-items-center" style="border-radius: 30px; background-color: #80DEEA; padding: 20px;">
+                    <div class="card-body d-flex justify-content-center align-items-center saldo-card">
                         <div class="container">
                             <h4 style="color: white;">Saldomu :</h4>
                             <h1 id="currentSaldo" style="color: white; font-weight: bold;">{{current_saldo.current_saldo}}</h1>
@@ -21,9 +21,9 @@
 
             <div class="col-12 col-md-8 mt-4 mt-md-0">
                 <div class="card" style="border: none; height: 250px; background-color: transparent;">
-                    <div class="card-body" style="border-radius: 30px; background-color: white;">
+                    <div class="card-body info-card">
                         <div class="row d-flex justify-content-between align-items-center pl-3 pr-3 pb-2">
-                            <h4 style="color: #80DEEA; font-weight: bold;">Transaksi terakhir</h4>
+                            <h5 style="color: #80DEEA; font-weight: bold;">Transaksi terakhir</h5>
                             <a class="btn btn-add text-center" href="{% url 'addTransaksi' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper">
@@ -56,7 +56,7 @@
         <div class="mt-4 row">
             <div class="col-12 col-md-4">
                 <div class="card" style="border: none; height: 300px; background-color: transparent;">
-                    <div class="card-body text-center" style="border-radius: 30px; background-color: white; padding: 20px;">
+                    <div class="card-body text-center info-card" style="padding: 20px;">
                         <h4 style="color: #80DEEA; font-weight: bold;">Visual Data</h4>
                         <div class="chart-wrapper">
                             <canvas id="myChart"></canvas>
@@ -67,9 +67,9 @@
 
             <div class="col-12 col-md-8 mt-4 mt-md-0">
                 <div class="card" style="border: none; height: 300px; background-color: transparent;">
-                    <div class="card-body" style="border-radius: 30px; background-color: white;">
+                    <div class="card-body info-card">
                         <div class="row d-flex justify-content-between align-items-center pl-3 pr-3 pb-2">
-                            <h4 style="color: #80DEEA; font-weight: bold;">Tanggungan</h4>
+                            <h5 style="color: #80DEEA; font-weight: bold;">Tanggungan</h5>
                             <a class="btn btn-add" href="{% url 'addTanggungan' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper-biaya">
@@ -87,8 +87,8 @@
                                             <td>{{tanggungan.nama}}</td>
                                             <td>{{tanggungan.jumlah}}</td>
                                             <td>
-                                                <a class="btn btn-primary" href="{% url 'updateTanggungan' tanggungan.id %}">Edit</a>
-                                                <a class="mt-1 mt-md-0 btn btn-danger" href="{% url 'deleteTanggungan' tanggungan.id %}">Hapus</a>
+                                                <a class="btn" href="{% url 'updateTanggungan' tanggungan.id %}" style="background-color: rgb(40, 171, 185); color: white;"><i class="fa fa-edit"></i></a>
+                                                <a class="btn" href="{% url 'deleteTanggungan' tanggungan.id %}" style="background-color: rgb(240, 84, 84); color: white;"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}

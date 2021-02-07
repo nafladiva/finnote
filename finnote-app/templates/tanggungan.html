@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <h3 class="mt-3 mb-3" style="color: #5A9BA4;">Transaksi</h3>
+        <h4 class="mt-3 mb-3" style="color: #5A9BA4;">Tanggungan</h4>
         <div class="card" style="border: none; height: 450px; background-color: transparent;">
-            <div class="card-body" style="border-radius: 30px; background-color: white;">
+            <div class="card-body info-card">
                 <div class="row d-flex justify-content-between mb-4 pl-3 pr-3">
                     <div style="width: 80%;">
                         <div class="container">
@@ -51,8 +51,8 @@
                                     <td>{{tanggungan.nama}}</td>
                                     <td>{{tanggungan.jumlah}}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="{% url 'updateTanggungan' tanggungan.id %}">Edit</a>
-                                        <a class="mt-1 mt-md-0 btn btn-danger" href="{% url 'deleteTanggungan' tanggungan.id %}">Hapus</a>
+                                        <a class="btn" href="{% url 'updateTanggungan' tanggungan.id %}" style="background-color: rgb(40, 171, 185); color: white;"><i class="fa fa-edit"></i></a>
+                                        <a class="btn" href="{% url 'deleteTanggungan' tanggungan.id %}" style="background-color: rgb(240, 84, 84); color: white;"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

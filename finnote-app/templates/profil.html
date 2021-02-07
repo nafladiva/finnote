@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <h3 class="mt-3 mb-3" style="color: #5A9BA4;">Profil</h3>
+        <h4 class="mt-3 mb-3" style="color: #5A9BA4;">Profil</h4>
         <div class="card" style="border: none; background-color: transparent;">
-            <div class="card-body p-5" style="border-radius: 30px; background-color: white;">
+            <div class="card-body info-card p-5">
                 <div style="border-bottom: 2px solid #5A9BA4;">
                     <h1 style="color: #5A9BA4; font-weight: bold;">{{ request.user }}</h1>
                 </div>
@@ -12,7 +12,7 @@
                 <h3 id="currentSaldo" style="color: #5A9BA4; font-weight: bold;">{{ current_saldo.current_saldo }}</h3>
 
                 <h5 class="mt-4" style="color: #5A9BA4;">Jumlah tanggungan:</h5>
-                <h3 id="currentSaldo" style="color: #5A9BA4; font-weight: bold;">{{ tanggungan.count }}</h3>
+                <a href="{% url 'tanggungan' %}"><h3 id="currentSaldo" style="color: #5A9BA4; font-weight: bold;">{{ tanggungan.count }}</h3></a>
             </div>
         </div>
     </div>
