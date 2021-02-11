@@ -8,6 +8,7 @@ from json import dumps
 
 from .models import *
 from .forms import *
+import datetime
 
 def loginPage(request):
     #if else ini berguna untuk menghandle user yg sudah login agar tidak bisa mengakses halaman login lagi
@@ -53,10 +54,15 @@ def logoutUser(request):
 def index(request):
     return render(request, 'landing.html')
 
+def date_converter(date):
+    if isinstance(date, datetime.date):
+        return date.__str__()
+
 @login_required(login_url='login') #dipake ini biar user yg belom login, tidak bisa akses halaman ini. Dipake untuk setiap halaman yg perlu authentication
 def home(request):
     transaksis = request.user.transaksi_set.all().order_by('-date')[:3]
     tanggungans = request.user.tanggungan_set.all()
+    transaksiAll = list(request.user.transaksi_set.all().order_by('date').values())[:7]
 
     current_user_saldo = request.user.saldouser_set.first()
     form = SaldoUserForm()
@@ -80,6 +86,9 @@ def home(request):
         if jumlah_tanggungan > current_user_saldo.current_saldo:
             messages.error(request, 'Jumlah tanggungan Anda melebihi saldomu sekarang!')
         context['data'] = data
+        
+        transaksiAll = dumps(transaksiAll, default = date_converter)
+        context['transaksiAll'] = transaksiAll
 
     return render(request, 'list.html', context)
 
@@ -104,7 +113,7 @@ def inputSaldo(request, pk):
 @login_required(login_url='login')
 def transaksi(request):
     transaksis = request.user.transaksi_set.all().order_by('-date')
-    paginator = Paginator(transaksis, 5)
+    paginator = Paginator(transaksis, 7)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

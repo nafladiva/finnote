@@ -27,8 +27,8 @@
                             <a class="btn btn-add text-center" href="{% url 'addTransaksi' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper">
-                            <table class="table">
-                                <thead>
+                            <table class="table table-zoom">
+                                <thead class="table-header-bg">
                                   <tr>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jenis Transaksi</th>
@@ -40,7 +40,12 @@
                                 {% for transaksi in transaksis %}
                                     <tr>
                                         <td>{{transaksi.nama}}</td>
-                                        <td>{{transaksi.jenis_transaksi}}</td>
+                                        {% if transaksi.jenis_transaksi == 'Pemasukan' %}
+                                        <td class="ml-2 mt-1" style="font-weight: bolder; color: green;">{{transaksi.jenis_transaksi}}</td>
+                                        {% else %}
+                                        <td class="ml-2 mt-1" style="font-weight: bolder; color: red;">{{transaksi.jenis_transaksi}}</td>
+                                        {% endif %}
+                                        <!-- <td>{{transaksi.jenis_transaksi}}</td> -->
                                         <td>{{transaksi.jumlah}}</td>
                                         <td>{{transaksi.date}}</td>
                                     </tr>
@@ -73,8 +78,8 @@
                             <a class="btn btn-add" href="{% url 'addTanggungan' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper-biaya">
-                            <table class="table table-hover">
-                                <thead>
+                            <table class="table table-hover table-zoom">
+                                <thead class="table-header-bg">
                                   <tr>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jumlah</th>
@@ -99,12 +104,25 @@
                 </div>
             </div>
         </div>
+        
+        <div class="mt-4 row">
+            <div class="col-12">
+                <div class="card" style="border: none; height: 300px; background-color: transparent;">
+                    <div class="card-body text-center info-card" style="padding: 20px;">
+                        <h5 class="pb-2" style="color: #80DEEA; font-weight: bold;">Representasi transaksi terakhirmu</h5>
+                        <div class="chart-wrapper">
+                            <canvas id="kchart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     {% else %}
     <div class="container" id="noCurrentSaldo">
         <div class="mt-4 card" style="border: none; height: 250px; background-color: transparent;">
-            <div class="card-body p-5" style="border-radius: 30px; background-color: white;">
+            <div class="card-body info-card p-5">
                 <h2 class="text-center">Kamu belum menginput saldomu!</h2>
                 <div class="pt-4 d-flex justify-content-center">
                     <a class="btn btn-primary btn-landing" href="{% url 'inputSaldo' request.user.id %}">Input</a>
@@ -123,6 +141,18 @@
     var tanggungan = data[1];
     var safeside = saldo * 0.2;
     saldo = saldo - safeside;
+
+    var dataTransaksi = JSON.parse("{{transaksiAll|escapejs}}");
+    dataTransaksi.sort((b,a) => new Date(a.date) - new Date(b.date));
+
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let dateList = []
+    $.each(dataTransaksi, function(key, value) {
+        value = new Date(value['date']);
+        var fixDate = monthNames[value.getMonth()] + ' ' + value.getDate();
+        dateList.push(fixDate);
+    });
+    // dateList.sort((a,b) => new Date(a) - new Date(b));
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -152,6 +182,62 @@
                     top: 0,
                     bottom: 0
                 }
+            }
+        }
+    });
+    
+    saldoAkhir = data[0];
+    detailSaldo = [saldoAkhir];
+    $.each(dataTransaksi, function(key, value) {
+        if(value['jenis_transaksi'] == 'Pemasukan') {
+            saldoAkhir = saldoAkhir - value['jumlah'];
+        } else if(value['jenis_transaksi'] == 'Pengeluaran') {
+            saldoAkhir = saldoAkhir + value['jumlah'];
+        }
+        detailSaldo.push(saldoAkhir);
+    });
+    detailSaldo.pop()
+
+    var kchart = document.getElementById('kchart').getContext('2d');
+    var chart2 = new Chart(kchart, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: dateList.reverse(),
+            datasets: [{
+                label: 'Jumlah',
+                borderColor: 'rgb(40, 171, 185)',
+                borderWidth: 4,
+                fill: false,
+                // backgroundColor: ['rgba(0, 0, 0, 0)'],
+                data: detailSaldo.reverse()
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            responsive:true,
+            maintainAspectRatio: false,
+            aspectRatio: 1.4,
+            legend: {
+                display: false
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        stepSize: 30000
+                    }
+                }]
             }
         }
     });

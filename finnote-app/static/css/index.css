@@ -19,7 +19,7 @@ body {
 .info-card {
     border-radius: 30px; 
     background-color: white; 
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.047);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
 }
 
 .auth-card {
@@ -41,6 +41,10 @@ body {
     display:inline-block;
 }
 
+.table-zoom {
+    zoom: 87%;
+}
+
 .table-wrapper-biaya {
     width: 100%;
     max-height: 200px;
@@ -53,6 +57,10 @@ body {
     max-height: 400px;
     overflow: auto;
     display:inline-block;
+}
+
+.table-header-bg {
+    background-color: rgba(45, 97, 135, 0.080);
 }
 
 .chart-wrapper {
@@ -86,7 +94,7 @@ body {
 .btn-add-transaksi {
     width: 47px;
     height: 47px;
-    background-color: #5A9BA4;
+    background-color: rgb(45, 97, 135);
     color: white;
     text-align: center;
     font-weight: bold;
@@ -117,3 +125,9 @@ body {
     border: none;
     box-shadow: 0 3px 7px #5A9BA486;
 }
+
+@media only screen and (max-width: 600px) {
+    .table-zoom {
+        zoom: 80%;
+    }
+  }
