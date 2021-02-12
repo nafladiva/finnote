@@ -36,12 +36,12 @@ body {
 
 .table-wrapper {
     width: 100%;
-    height: 150px;
+    max-height: 150px;
     overflow: auto;
     display:inline-block;
 }
 
-.table-zoom {
+.table-zoom, .table-zoom-transaksi {
     zoom: 87%;
 }
 
@@ -130,4 +130,36 @@ body {
     .table-zoom {
         zoom: 80%;
     }
-  }
+    
+    .table-zoom-transaksi {
+        zoom: 70%;
+    }
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.circle1 {
+    background: #0d7e8d17;
+    clip-path: circle(18% at 5% 50%);
+}
+
+.circle2 {
+    background: #0d7e8d17;
+    clip-path: circle(4% at 47% 30%);
+}
+
+.circle3 {
+    background: #0d7e8d17;
+    clip-path: circle(8% at 38% 70%);
+}
+
+.circle4 {
+    background: #0d7e8d17;
+    clip-path: circle(10% at 100% 40%);
+}

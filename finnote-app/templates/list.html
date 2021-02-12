@@ -27,7 +27,7 @@
                             <a class="btn btn-add text-center" href="{% url 'addTransaksi' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper">
-                            <table class="table table-zoom">
+                            <table class="table table-zoom-transaksi">
                                 <thead class="table-header-bg">
                                   <tr>
                                     <th scope="col">Nama</th>
@@ -235,7 +235,8 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        stepSize: 30000
+                        precision: 0,
+                        maxTicksLimit: 7
                     }
                 }]
             }

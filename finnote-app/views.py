@@ -62,7 +62,7 @@ def date_converter(date):
 def home(request):
     transaksis = request.user.transaksi_set.all().order_by('-date')[:3]
     tanggungans = request.user.tanggungan_set.all()
-    transaksiAll = list(request.user.transaksi_set.all().order_by('date').values())[:7]
+    transaksiAll = list(request.user.transaksi_set.all().order_by('-date').values())[:7]
 
     current_user_saldo = request.user.saldouser_set.first()
     form = SaldoUserForm()

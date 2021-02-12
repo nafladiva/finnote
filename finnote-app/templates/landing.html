@@ -7,27 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finnote</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand font-weight-bold brand-title" href="/">Finnote.</a>
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+    <div class="circle circle4"></div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="ml-md-2 navbar-brand font-weight-bold brand-title" href="/">Finnote.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Beranda</a>
+            <ul class="navbar-nav ml-auto">
+            <li class="p-2 nav-item">
+                <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#about">Tentang</a>
+            <li class="p-2 nav-item">
+                <a class="nav-link" href="#about">About</a>
             </li>
             </ul>
             <span class="navbar-text">
-                <span><a class="btn btn-primary btn-landing" href="{% url 'login' %}" style="color: white;">Masuk</a></span>
+                <span><a class="ml-md-3 btn btn-primary btn-landing" href="{% url 'login' %}" style="color: white;">Masuk</a></span>
             </span>
         </div>
     </nav>
@@ -45,7 +52,7 @@
         </div>
     </div>
 
-    <div class="mt-5 pt-3 container">
+    <div class="mt-5 pt-3 pb-4 container">
         <h2 class="mb-5 text-center" id="about" style="color: #5A9BA4; font-weight: bolder;">Apa itu <strong>Finnote</strong>?</h2>
         <div class="d-flex justify-content-center">
             <div class="col-11 text-justify">
@@ -55,7 +62,7 @@
         </div>
     </div>
 
-    <div class="mt-5 pt-4 container">
+    <div class="mt-5 pt-4 pb-4 container">
         <h2 class="mb-5 text-center" style="color: #5A9BA4; font-weight: bolder;">Bagaimana cara kerjanya?</h2>
         <div class="row d-flex justify-content-center">
             <div class="col-10 col-md-3 text-center">
@@ -70,6 +77,16 @@
                 <img src="{% static 'images/happy.svg' %}" alt="ilustrasi" style="width: 70%;">
                 <p class="mt-2">Enjoy!</p>
             </div>
+        </div>
+    </div>
+
+    <div class="mt-5 pt-4 pb-4 container">
+        <h2 class="mb-3 text-center" style="color: #5A9BA4; font-weight: bolder;">Tunggu apa lagi?</h2>
+        <div class="col-11 container">
+            <h6 class="mb-4 text-center" style="color: #5A9BA4;">Ayo segera daftarkan dirimu dan atur kondisi keuanganmu!</h6>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary btn-landing-start" href="{% url 'register' %}">Mulai</a>
         </div>
     </div>
 
