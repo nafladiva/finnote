@@ -3,7 +3,10 @@
 {% block content %}
     <div class="container">
         <h4 class="mt-3 mb-3" style="color: #5A9BA4;">Transaksi</h4>
-        <div class="card" style="border: none; height: 450px; background-color: transparent;">
+        {% for message in messages %}
+            <p class="alert alert-success">{{message}}</p>
+        {% endfor %}
+        <div class="card" style="border: none; height: 540px; background-color: transparent;">
             <div class="card-body info-card">
                 <div class="row d-flex justify-content-between mb-4 pl-3 pr-3">
                     <div style="width: 80%;">
@@ -44,6 +47,7 @@
                             <th scope="col">Jenis Transaksi</th>
                             <th scope="col">Jumlah</th>
                             <th scope="col">Tanggal</th>
+                            <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody style="overflow-y: scroll;">
@@ -52,12 +56,15 @@
                                 <td>{{transaksi.nama}}</td>
                                 <!-- <td>{{transaksi.jenis_transaksi}}</td> -->
                                 {% if transaksi.jenis_transaksi == 'Pemasukan' %}
-                                <td class="ml-2 mt-1 badge badge-success">{{transaksi.jenis_transaksi}}</td>
+                                <td class="ml-2 mt-2 badge badge-success">{{transaksi.jenis_transaksi}}</td>
                                 {% else %}
-                                <td class="ml-2 mt-1 badge badge-danger">{{transaksi.jenis_transaksi}}</td>
+                                <td class="ml-2 mt-2 badge badge-danger">{{transaksi.jenis_transaksi}}</td>
                                 {% endif %}
                                 <td>{{transaksi.jumlah}}</td>
                                 <td>{{transaksi.date}}</td>
+                                <td>
+                                    <a class="btn" href="{% url 'deleteTransaksi' request.user.id transaksi.id %}" style="background-color: rgb(240, 84, 84); color: white;"><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

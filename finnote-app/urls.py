@@ -10,6 +10,7 @@ urlpatterns = [
     path('transaksi/', views.transaksi, name='transaksi'),
     path('tanggungan/', views.tanggungan, name='tanggungan'),
     path('tambah-transaksi/<str:pk>/', views.addTransaksi, name='addTransaksi'),
+    path('hapus-transaksi/<str:user_id>/<str:pk>/', views.deleteTransaksi, name='deleteTransaksi'),
     path('tambah-tanggungan/<str:pk>/', views.addTanggungan, name='addTanggungan'),
     path('edit-tanggungan/<str:pk>/', views.updateTanggungan, name='updateTanggungan'),
     path('hapus-tanggungan/<str:pk>/', views.deleteTanggungan, name='deleteTanggungan'),

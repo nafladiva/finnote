@@ -26,7 +26,7 @@ def loginPage(request):
                 login(request, user)
                 return redirect('/home')
             else:
-                messages.error(request, 'Incorrect username or password')
+                messages.error(request, 'Username atau password salah')
 
         return render(request, 'login.html')
 
@@ -41,7 +41,7 @@ def registerPage(request):
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
-                messages.success(request, 'Register successfully for ' + user)
+                messages.success(request, 'Registrasi berhasil untuk ' + user)
                 return redirect('/login')
 
         context = {'form':form}
@@ -216,3 +216,20 @@ def deleteTanggungan(request, pk):
     item.delete()
 
     return redirect('/home')
+
+@login_required(login_url='login')
+def deleteTransaksi(request, pk, user_id):
+    item = Transaksi.objects.get(id=pk)
+    saldo_user = SaldoUser.objects.get(user_id=user_id)
+
+    if item.jenis_transaksi == 'Pemasukan':
+        saldo_user.current_saldo -= item.jumlah
+        saldo_user.save()
+    elif item.jenis_transaksi == 'Pengeluaran':
+        saldo_user.current_saldo += item.jumlah
+        saldo_user.save()
+
+    item.delete()
+    messages.success(request, 'Transaksi berhasil dihapus!')
+    
+    return redirect('/transaksi')

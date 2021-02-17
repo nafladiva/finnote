@@ -20,10 +20,13 @@
             </div>
 
             <div class="col-12 col-md-8 mt-4 mt-md-0">
-                <div class="card" style="border: none; height: 250px; background-color: transparent;">
+                <div class="card" style="border: none; height: 260px; background-color: transparent;">
                     <div class="card-body info-card">
                         <div class="row d-flex justify-content-between align-items-center pl-3 pr-3 pb-2">
-                            <h5 style="color: #80DEEA; font-weight: bold;">Transaksi terakhir</h5>
+                            <div class="pl-3 row">
+                                <h5 class="mr-2" style="color: #80DEEA; font-weight: bold;">Transaksi terakhir</h5>
+                                <i class="pt-1 fa fa-info-circle" style="color: rgb(45, 97, 135);" data-toggle="tooltip" data-placement="right" title="3 transaksi terakhir"></i>
+                            </div>
                             <a class="btn btn-add text-center" href="{% url 'addTransaksi' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper">
@@ -74,7 +77,10 @@
                 <div class="card" style="border: none; height: 300px; background-color: transparent;">
                     <div class="card-body info-card">
                         <div class="row d-flex justify-content-between align-items-center pl-3 pr-3 pb-2">
-                            <h5 style="color: #80DEEA; font-weight: bold;">Tanggungan</h5>
+                            <div class="pl-3 row">
+                                <h5 class="mr-2" style="color: #80DEEA; font-weight: bold;">Tanggungan</h5>
+                                <i class="pt-1 fa fa-info-circle" style="color: rgb(45, 97, 135);" data-toggle="tooltip" data-placement="right" title="Tanggungan adalah daftar biaya yang harus kamu bayar dalam waktu dekat"></i>
+                            </div>
                             <a class="btn btn-add" href="{% url 'addTanggungan' request.user.id %}">+</a>
                         </div>
                         <div class="pt-2 table-wrapper-biaya">
@@ -142,7 +148,8 @@
     var safeside = saldo * 0.2;
     saldo = saldo - safeside;
 
-    var dataTransaksi = JSON.parse("{{transaksiAll|escapejs}}");
+    var allDataTransaksi = JSON.parse("{{transaksiAll|escapejs}}");
+    dataTransaksi = allDataTransaksi.slice(0,7);
     dataTransaksi.sort((b,a) => new Date(a.date) - new Date(b.date));
 
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -186,37 +193,46 @@
         }
     });
     
-    saldoAkhir = data[0];
-    detailSaldo = [saldoAkhir];
+    // saldoAkhir = data[0];
+    detailSaldo = [];
+    // $.each(dataTransaksi, function(key, value) {
+    //     if(value['jenis_transaksi'] == 'Pemasukan') {
+    //         saldoAkhir = saldoAkhir - value['jumlah'];
+    //     } else if(value['jenis_transaksi'] == 'Pengeluaran') {
+    //         saldoAkhir = saldoAkhir + value['jumlah'];
+    //     }
+    //     detailSaldo.push(saldoAkhir);
+    // });
+    // detailSaldo.pop()
+
     $.each(dataTransaksi, function(key, value) {
         if(value['jenis_transaksi'] == 'Pemasukan') {
-            saldoAkhir = saldoAkhir - value['jumlah'];
+            current = value['jumlah'];
         } else if(value['jenis_transaksi'] == 'Pengeluaran') {
-            saldoAkhir = saldoAkhir + value['jumlah'];
+            current = value['jumlah'] * -1;
         }
-        detailSaldo.push(saldoAkhir);
+        detailSaldo.push(current);
     });
-    detailSaldo.pop()
+
+    let transaksi = detailSaldo.reverse();
+    const colours = transaksi.map((value) => value < 0 ? 'rgb(240, 84, 84)' : 'rgb(40, 171, 185)');
 
     var kchart = document.getElementById('kchart').getContext('2d');
     var chart2 = new Chart(kchart, {
-        // The type of chart we want to create
-        type: 'line',
+        type: 'bar',
 
-        // The data for our dataset
         data: {
             labels: dateList.reverse(),
             datasets: [{
                 label: 'Jumlah',
-                borderColor: 'rgb(40, 171, 185)',
-                borderWidth: 4,
+                // borderColor: 'rgb(40, 171, 185)',
+                backgroundColor: colours,
+                // borderWidth: 4,
                 fill: false,
-                // backgroundColor: ['rgba(0, 0, 0, 0)'],
-                data: detailSaldo.reverse()
+                data: transaksi
             }]
         },
 
-        // Configuration options go here
         options: {
             responsive:true,
             maintainAspectRatio: false,
